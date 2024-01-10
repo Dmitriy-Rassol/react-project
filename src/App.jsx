@@ -1,19 +1,23 @@
 import './App.css'
-import {useEffect, useState} from 'react';
+import Button from './components/Button.jsx';
+import Input from './components/Input.jsx';
 
-const styles = {color: 'blue', fontSize: '50px'}
-
+import { useState } from 'react';
 export default function App () {
-  const [number, setNumber] = useState(0);
+  const [inputValue, setInputValue] = useState('');
 
-  useEffect(() => {
-    setNumber(Math.floor(Math.random() * 1000))
-  }, [])
+  const handleClick = () => {
+    setInputValue('');
+  };
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   return (
     <div className='App'>
-      <h1 className='red big'>Привет число!</h1>
-      <h2 style={styles}>Я число - {number}</h2>
+      <Input value={inputValue} onChange={handleChange} />
+      <Button onClick={handleClick} text="Очистить поле"/>
     </div>
   );
 }
