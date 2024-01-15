@@ -33,11 +33,10 @@ const Counter = () => {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
 
-    // Очищаем слушатель события при размонтировании компонента
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [counter]);
+  })
 
   return (
     <div>
@@ -61,10 +60,10 @@ const Counter = () => {
           </div>
         </div>
       </div>{" "}
-      <p>
+      <p style={{position:"absolute", left: "50%", transform: "translateX(-50%)", width: "100%"}}>
         {" "}
         {active && (
-          <p style={{ color: "red" }}>
+          <p style={{ color: "red", textAlign: "center"}}>
             Предупреждение: Значение счетчика вне допустимого диапазона
           </p>
         )}
