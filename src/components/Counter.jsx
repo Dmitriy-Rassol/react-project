@@ -39,7 +39,7 @@ const Counter = () => {
   })
 
   return (
-    <div>
+    <div style={{position: "relative"}}>
       <div
         style={{
           display: "flex",
@@ -60,14 +60,14 @@ const Counter = () => {
           </div>
         </div>
       </div>{" "}
-      <p style={{position:"absolute", left: "50%", transform: "translateX(-50%)", width: "100%"}}>
+      <div style={{position:"absolute", left: "50%", transform: "translateX(-50%)", width: "100%"}}>
         {" "}
         {active && (
           <p style={{ color: "red", textAlign: "center"}}>
             Предупреждение: Значение счетчика вне допустимого диапазона
           </p>
         )}
-      </p>
+      </div>
     </div>
   );
 };

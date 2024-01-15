@@ -1,39 +1,43 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect } from "react";
 
 const Timer = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
-    const [expired, setExpired] = useState(false);
-  
+    const [stopTimer, setStopTimer] = useState(false);
+
     useEffect(() => {
-      const updateCurrentTime = () => {
-        const newTime = new Date();
-        setCurrentTime(newTime);
-  
-        const expirationTime = new Date(currentTime.getTime() + 1 * 60 * 1000);
-        if (newTime > expirationTime) {
-          setExpired(true);
-          clearInterval(intervalId);
+      const intervalId = setInterval(() => {
+        if (!stopTimer) {
+          setCurrentTime(new Date());
         }
-      };
-  
-      const intervalId = setInterval(updateCurrentTime, 1000);
+      }, 1000);
   
       return () => {
         clearInterval(intervalId);
       };
-    }, [currentTime]);
+    }, [stopTimer]);
+  
+    useEffect(() => {
+      const stopTimerId = setTimeout(() => {
+        setStopTimer(true);
+      }, 30000);
+  
+      return () => {
+        clearTimeout(stopTimerId);
+      };
+    }, []);
+  
   
     return (
-      <div>
-        <p style={{textAlign:"center"}}>Текущее время: {currentTime.toLocaleTimeString()}</p>
-        {expired ? (
+      <div    style={{textAlign: "center"}}>
+        <h2 style={{color:"green"}}>Текущее время: {currentTime.toLocaleTimeString()}</h2>
+        {stopTimer ? (
           <p style={{ color: 'red' }}>Время истекло!</p>
         ) : (
-          <p>Таймер будет остановлен через 1 минуту</p>
+          <p>Таймер будет остановлен через 30 секунд</p>
         )}
       </div>
     );
   };
   
   export default Timer;
+  
