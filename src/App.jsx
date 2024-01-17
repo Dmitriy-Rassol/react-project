@@ -1,5 +1,4 @@
 import "./App.css";
-import Button from "./components/Button.jsx";
 import Input from "./components/Input.jsx";
 
 import { useState } from "react";
@@ -10,6 +9,7 @@ export default function App() {
   const handleClick = () => {
     setInputValue("");
     setClickCount(clickCount + 1);
+  }
 
     const handleChange = (event) => {
       setInputValue(event.target.value);
@@ -25,4 +25,3 @@ export default function App() {
       </div>
     );
   };
-}
