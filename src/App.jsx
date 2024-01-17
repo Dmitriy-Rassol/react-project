@@ -10,20 +10,19 @@ export default function App() {
   const handleClick = () => {
     setInputValue("");
     setClickCount(clickCount + 1);
+
+    const handleChange = (event) => {
+      setInputValue(event.target.value);
+    };
+
+    const buttonClassName = clickCount % 2 === 0 ? "red" : "";
+    return (
+      <div className="App">
+        <Input value={inputValue} onChange={handleChange} />
+        <button className={buttonClassName} onClick={handleClick}>
+          Очистить поле
+        </button>
+      </div>
+    );
   };
-
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const buttonClassName = clickCount % 2 === 0 ? 'red' : '';
-
-  return (
-    <div className="App">
-      <Input value={inputValue} onChange={handleChange} />
-      <button className={buttonClassName} onClick={handleClick}>
-        Очистить поле
-      </button>
-    </div>
-  );
 }
